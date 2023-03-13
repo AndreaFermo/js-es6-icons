@@ -20,7 +20,7 @@ const iconList = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
-		type: 'animal',
+		type: 'PIPPO',
 		family: 'fas',
 		color: 'orange'
 	},
@@ -133,16 +133,17 @@ const iconList = [
 // CREAZIONE BOX ICONE
 const iconsContainerDom = document.getElementById('iconsContainer');
 iconList.forEach(element => {
-	generateDomElement(element)
+	generateDomElement(element);
 });
 
 //SELECT
 
 const selectFamilyDom = document.getElementById('selectFamily');
+createSelectorOptions();
 
 selectFamilyDom.addEventListener('change', function() {
     iconsContainerDom.innerHTML = '';
-	console.log(this.value)
+	console.log(this.value);
     let selectedValue = selectFamilyDom.value;
     if (selectedValue == 'all') {
        iconList.forEach(element => {generateDomElement(element)});  
@@ -170,7 +171,17 @@ function generateRandomHexadecimalColorCode() {
 
 //bonus 2
 
+function createSelectorOptions() {
+	selectFamilyDom.innerHTML += `<option value="all">All</option>`;
+	const selectArray = [];
 
+	iconList.forEach(element => {
+		if(!selectArray.includes(element.type)){
+			selectArray.push(element.type);
+			selectFamilyDom.innerHTML +=`<option value="${element.type}">${element.type}</option>`;
+		}
+	})
+}
 
 
 
