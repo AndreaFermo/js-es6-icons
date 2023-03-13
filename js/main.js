@@ -130,10 +130,46 @@ const iconList = [
 		color: 'blue'
 	}
 ];
-
+// CREAZIONE BOX ICONE
 const iconsContainerDom = document.getElementById('iconsContainer');
 
-iconList.forEach(element => {
-    iconsContainerDom.innerHTML += `<i style='color:${element.color};' class='fa-solid ${element.prefix}${element.name}'></i>`;
+iconList.forEach(element => {generateDomElement(element)});
+
+//SELECT
+
+const selectFamilyDom = document.getElementById('selectFamily');
+
+
+selectFamilyDom.addEventListener('change', function() {
+    iconsContainerDom.innerHTML = '';
+    let selectedValue = selectFamilyDom.value;
+    if (selectedValue == 'all') {
+       iconList.forEach(element => {generateDomElement(element)});  
+    } else if (selectedValue == 'animal') {
+        
+        iconList.filter(element =>{
+            if (element.type == selectedValue) {
+               return generateDomElement(element);
+            }
+        }) 
+    } else if (selectedValue == 'vegetable') {
+        iconList.filter(element =>{
+            if (element.type == selectedValue) {
+               return generateDomElement(element);
+            }
+        }) 
+    } else if (selectedValue == 'user') {
+        iconList.filter(element =>{
+            if (element.type == selectedValue) {
+               return generateDomElement(element);
+            }
+        }) 
+    }
 });
+// funzioni riutilizzabili
+function generateDomElement(element){
+    return iconsContainerDom.innerHTML += `<i style='color:${element.color};' class='fa-solid ${element.prefix}${element.name}'></i>`;
+}
+
+
 
