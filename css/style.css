@@ -54,3 +54,7 @@ label {
     border-radius: 6px;
     box-shadow: 3px 3px gray;
 }
+
+i {
+    font-size: 30px;
+}
